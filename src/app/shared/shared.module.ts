@@ -1,15 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MatInputModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const MATERIAL_MODULES = [
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
 ];
 
 const SHARED_MODULES = [
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MATERIAL_MODULES,
 ];
 

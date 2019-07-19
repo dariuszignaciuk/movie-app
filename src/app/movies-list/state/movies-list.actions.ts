@@ -1,14 +1,22 @@
 import {Action} from '@ngrx/store';
-import {Movie} from '../../movie.model';
+import {LoadFilters, Movie} from '../../movie.model';
 
 export enum MoviesListActionTypes {
     Load = '[MoviesList] Load',
+    LoadWithFilters = '[MoviesList] Load with filters',
     LoadSuccess = '[MoviesList] Load Success',
     LoadFail = '[MoviesList] Load Fail',
 }
 
 export class Load implements Action {
     readonly type = MoviesListActionTypes.Load;
+}
+
+export class LoadWithFilters implements Action {
+    readonly type = MoviesListActionTypes.LoadWithFilters;
+
+    constructor(public payload: LoadFilters) {
+    }
 }
 
 export class LoadSuccess implements Action {
@@ -26,5 +34,6 @@ export class LoadFail implements Action {
 }
 
 export type MoviesListActions = Load
+    | LoadWithFilters
     | LoadSuccess
     | LoadFail;

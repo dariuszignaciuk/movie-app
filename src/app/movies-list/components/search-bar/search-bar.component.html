@@ -1,5 +1,5 @@
-<form>
+<div [formGroup]="searchForm">
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Search title" value="Sushi">
+        <input matInput placeholder="Search title" formControlName="search">
     </mat-form-field>
-</form>
+</div>

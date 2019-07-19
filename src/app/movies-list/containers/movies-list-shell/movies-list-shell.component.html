@@ -1,4 +1,6 @@
-<app-movies-list-header></app-movies-list-header>
+<app-movies-list-header
+        (searchQueryChanged)="searchQueryChanged($event)"
+></app-movies-list-header>
 <app-movies-list
         [movies]="movies$ | async"
 ></app-movies-list>

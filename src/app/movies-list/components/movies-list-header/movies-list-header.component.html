@@ -1,4 +1,4 @@
 <div class="container">
     <h1 class="page-title">Welcome to awesome movies library</h1>
-    <app-search-bar></app-search-bar>
+    <app-search-bar (searchQueryChanged)="searchQueryChanged.emit($event)"></app-search-bar>
 </div>

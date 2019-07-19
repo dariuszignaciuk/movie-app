@@ -22,3 +22,7 @@ export interface Movie {
     length: string;
     img: string;
 }
+
+export interface LoadFilters {
+    search: string;
+}
