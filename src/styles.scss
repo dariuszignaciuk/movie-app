@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "styles/reset";
+@import "styles/variables";
+
+.cm {
+  color: $main-color;
+}
+
+body, html {
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media (max-width: 1400px) {
+    max-width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.block {
+  display: block;
+}
+
+.page-title {
+  font-size: 30px;
+  padding: 20px 0;
+  font-weight: 700;
+}
