@@ -1,28 +1,41 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {LinkButtonComponent} from './components/link-button/link-button.component';
+import {RouterModule} from '@angular/router';
+import { IconComponent } from './components/icon/icon.component';
 
 const MATERIAL_MODULES = [
     MatInputModule,
     MatFormFieldModule,
+    MatButtonModule,
 ];
 
 const SHARED_MODULES = [
     CommonModule,
+    RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
     MATERIAL_MODULES,
 ];
 
+const SHARED_COMPONENTS = [
+    LinkButtonComponent,
+    IconComponent,
+];
+
 @NgModule({
-    declarations: [],
+    declarations: [
+        SHARED_COMPONENTS,
+    ],
     imports: [
-        SHARED_MODULES
+        SHARED_MODULES,
     ],
     exports: [
-        SHARED_MODULES
+        SHARED_MODULES,
+        SHARED_COMPONENTS,
     ]
 })
 export class SharedModule {

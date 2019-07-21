@@ -1,4 +1,4 @@
-<a [href]="movie.key" class="movie-box block">
+<a [routerLink]="'/movie/'+movie.key" class="movie-box block">
     <div class="movie-box__img-wrapper">
         <img class="movie-box__img block" [src]="movie.img" alt="{{movie.name}}">
     </div>

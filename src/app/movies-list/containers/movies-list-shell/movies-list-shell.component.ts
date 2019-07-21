@@ -24,8 +24,11 @@ export class MoviesListShellComponent implements OnInit {
     }
 
     public searchQueryChanged(query: string): void {
-        this.filters.search = query;
-        this.store.dispatch(new moviesListActions.LoadWithFilters(this.filters));
+        this.filters = {
+            ...this.filters,
+            search: query
+        };
+        this.store.dispatch(new moviesListActions.SearchMovies(query));
     }
 
 }

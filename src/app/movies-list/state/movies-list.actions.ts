@@ -6,6 +6,7 @@ export enum MoviesListActionTypes {
     LoadWithFilters = '[MoviesList] Load with filters',
     LoadSuccess = '[MoviesList] Load Success',
     LoadFail = '[MoviesList] Load Fail',
+    SearchMovies = '[MoviesList] Filter movies\' titles with search query',
 }
 
 export class Load implements Action {
@@ -33,7 +34,15 @@ export class LoadFail implements Action {
     }
 }
 
+export class SearchMovies implements Action {
+    readonly type = MoviesListActionTypes.SearchMovies;
+
+    constructor(public payload: string) {
+    }
+}
+
 export type MoviesListActions = Load
     | LoadWithFilters
     | LoadSuccess
-    | LoadFail;
+    | LoadFail
+    | SearchMovies;

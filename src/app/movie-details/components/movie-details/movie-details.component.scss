@@ -1,0 +1,58 @@
+@import "../../../../styles/variables";
+
+.movie-details {
+  display: flex;
+
+  &__img {
+    width: 600px;
+    padding: 10px 20px 10px 0;
+    border-right: 1px solid $main-color;
+  }
+
+  &__content {
+    padding: 0 20px;
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 500;
+    padding-top: 10px;
+  }
+
+  &__length {
+    font-size: 16px;
+    margin: 10px 0 40px;
+  }
+
+  &__rating {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__desc {
+    font-size: 18px;
+  }
+
+  &__genre {
+    display: flex;
+    margin-top: 50px;
+    font-size: 15px;
+  }
+
+  .genre-title {
+    padding-right: 10px;
+  }
+
+  .star {
+    width: 30px;
+    padding-right: 5px;
+  }
+
+  .genre {
+    display: inline-block;
+    padding-right: 6px;
+  }
+}

@@ -6,18 +6,19 @@ import {map} from 'rxjs/operators';
 import {ImageHelper} from '../shared/utils/image-helper';
 
 @Injectable()
-export class MoviesListService {
+export class MovieDetailsService {
 
     constructor(private http: HttpClient) {
     }
 
-    getMoviesList(): Observable<Movie[]> {
+    getMovie(key: string): Observable<Movie> {
         return this.http.get<Movie[]>('/assets/json/movie.mock-data.json')
             .pipe(
-                map(movies => movies.map(movie => {
-                    movie.img = ImageHelper.constructImgUrl(movie.img);
-                    return movie;
-                }))
+                map(allMovies => {
+                    const mathingMovie: Movie = allMovies.find(movie => movie.key === key);
+                    mathingMovie.img = ImageHelper.constructImgUrl(mathingMovie.img);
+                    return mathingMovie;
+                })
             );
     }
 }

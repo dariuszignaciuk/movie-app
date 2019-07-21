@@ -32,7 +32,7 @@ export class MoviesListEffects {
                 map(movies => {
                     let filteredResults: Movie[] = movies;
                     if (action.payload.search) {
-                        filteredResults = movies.filter(movie => movie.name.includes(action.payload.search));
+                        filteredResults = movies.filter(movie => movie.name.toLowerCase().includes(action.payload.search.toLowerCase()));
                     }
                     return new moviesListActions.LoadSuccess(filteredResults);
                 }),

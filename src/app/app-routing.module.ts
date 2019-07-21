@@ -8,7 +8,7 @@ const appRoutes: Routes = [
         loadChildren: () => import('./movies-list/movies-list.module').then(m => m.MoviesListModule)
     },
     {
-        path: 'movie',
+        path: 'movie/:key',
         loadChildren: () => import('./movie-details/movie-details.module.js').then(m => m.MovieDetailsModule)
     },
     {path: '**', redirectTo: '/', pathMatch: 'full'},

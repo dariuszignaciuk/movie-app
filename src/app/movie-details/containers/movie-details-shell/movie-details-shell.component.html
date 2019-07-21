@@ -1,1 +1,7 @@
-<p>movie-details-shell works!</p>
+<app-link-button
+        [text]="'Back to list'"
+        [url]="'/'"
+></app-link-button>
+<app-movie-details
+        [movie]="movie$ | async"
+></app-movie-details>
