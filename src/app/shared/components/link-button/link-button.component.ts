@@ -9,6 +9,8 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 export class LinkButtonComponent implements OnInit {
     @Input() text: string;
     @Input() url: string;
+    @Input() iconName: string;
+    @Input() usePngIcon: boolean;
 
     constructor() {
     }

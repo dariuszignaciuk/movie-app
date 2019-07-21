@@ -1,3 +1,6 @@
-<button mat-stroked-button color="primary">
-    <a [routerLink]="url" class="block">{{text}}</a>
+<button mat-stroked-button class="link-btn" color="primary">
+    <a [routerLink]="url" class="block cm link-btn__anchor">
+        <app-icon class="link-icon" [iconName]="iconName" [usePng]="usePngIcon"></app-icon>
+        <span>{{text}}</span>
+    </a>
 </button>

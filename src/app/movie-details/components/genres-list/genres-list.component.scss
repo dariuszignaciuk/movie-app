@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.genres-list {
+  display: flex;
+  font-size: 15px;
+}
+
+.genre-title {
+  padding-right: 10px;
+}
+
+.genre {
+  display: inline-block;
+  padding-right: 6px;
+}

@@ -2,15 +2,22 @@
 
 .movie-details {
   display: flex;
+  margin-top: 20px;
 
-  &__img {
-    width: 600px;
+  &__img-container {
+    width: 350px;
+    max-width: 100%;
     padding: 10px 20px 10px 0;
     border-right: 1px solid $main-color;
   }
 
+  &__img {
+    width: 100%;
+  }
+
   &__content {
     padding: 0 20px;
+    flex: 1 0;
   }
 
   &__title {
@@ -24,35 +31,42 @@
     margin: 10px 0 40px;
   }
 
-  &__rating {
-    font-size: 25px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-  }
-
   &__desc {
     font-size: 18px;
   }
+}
 
-  &__genre {
-    display: flex;
-    margin-top: 50px;
-    font-size: 15px;
+.genres-list {
+  margin-top: 50px;
+}
+
+.back-btn {
+  margin-top: 30px;
+  width: 300px;
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .movie-details {
+    flex-wrap: wrap;
+
+    &__content {
+      padding: 0 5px;
+      flex: auto;
+    }
+
+    &__img-container {
+      width: auto;
+      margin: auto;
+      padding: 0;
+      border: none;
+    }
   }
-
-  .genre-title {
-    padding-right: 10px;
+  .genres-list {
+    margin-top: 20px;
   }
-
-  .star {
-    width: 30px;
-    padding-right: 5px;
-  }
-
-  .genre {
-    display: inline-block;
-    padding-right: 6px;
+  .back-btn {
+    width: 100%;
+    margin: 30px auto 20px;
   }
 }

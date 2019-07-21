@@ -1,0 +1,8 @@
+<div class="genres-list">
+    <span class="genre-title">Genre:</span>
+    <ul>
+        <li *ngFor="let genre of genres" class="genre cm">
+            <a routerLink="/" [queryParams]="{genre: genre}">{{genre}}</a>
+        </li>
+    </ul>
+</div>

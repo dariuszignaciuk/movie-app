@@ -1,20 +1,18 @@
 <div class="movie-details container" *ngIf="movie">
-    <img class="movie-details__img" [src]="movie.img" alt="{{movie.name}}">
+    <div class="center movie-details__img-container">
+        <img class="movie-details__img" [src]="movie.img" alt="{{movie.name}}">
+    </div>
     <div class="movie-details__content">
         <h1 class="movie-details__title cm">{{movie.name}}</h1>
         <div class="movie-details__length">{{movie.length}}</div>
-        <div class="movie-details__rating">
-            <app-icon class="star" [iconName]="'star'"></app-icon>
-            {{movie.rate}}
-        </div>
+        <app-movie-rating [rate]="movie.rate"></app-movie-rating>
         <p class="movie-details__desc">{{movie.description}}</p>
-        <div class="movie-details__genre">
-            <span class="genre-title">Genre:</span>
-            <ul>
-                <li *ngFor="let genre of movie.genres" class="genre cm">
-                    <a routerLink="/">{{genre}}</a>
-                </li>
-            </ul>
-        </div>
+        <app-genres-list class="genres-list" [genres]="movie.genres"></app-genres-list>
+        <app-link-button
+                class="back-btn"
+                [text]="'Back to list'"
+                [url]="'/'"
+                [iconName]="'return'"
+        ></app-link-button>
     </div>
 </div>
