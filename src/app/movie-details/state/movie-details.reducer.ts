@@ -3,12 +3,10 @@ import {Movie} from '../../shared/models/movie';
 
 export interface MovieDetailsState {
     movie: Movie;
-    error: string;
 }
 
 const initialState: MovieDetailsState = {
     movie: null,
-    error: '',
 };
 
 export function reducer(state = initialState, action: MovieDetailsActions): MovieDetailsState {
@@ -17,13 +15,11 @@ export function reducer(state = initialState, action: MovieDetailsActions): Movi
             return {
                 ...state,
                 movie: action.payload,
-                error: ''
             };
         case MovieDetailsActionTypes.LoadFail:
             return {
                 ...state,
                 movie: null,
-                error: action.payload
             };
         default:
             return state;

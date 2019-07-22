@@ -2,12 +2,15 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import * as moviesListActions from '../../state/movies-list.actions';
 import {select, Store} from '@ngrx/store';
 import * as fromMoviesList from '../../state/';
-import {Observable} from 'rxjs';
+import * as fromRoot from '../../../state';
+import {combineLatest, Observable} from 'rxjs';
 import {Movie} from '../../../shared/models/movie';
 import {GenreType} from '../../../shared/models/genre-type';
 import {MoviesFilter} from '../../models/movies-filter';
 import {GenreSelectItem} from '../../models/genre-select-item';
 import {take} from 'rxjs/operators';
+import {Params, Router} from '@angular/router';
+import {GenresHelper} from '../../../shared/utils/genres-helper';
 
 @Component({
     templateUrl: './movies-list-shell.component.html',
@@ -15,20 +18,19 @@ import {take} from 'rxjs/operators';
 })
 export class MoviesListShellComponent implements OnInit {
     public movies$: Observable<Movie[]>;
-    public genresList: GenreSelectItem[];
+    public genresList: GenreSelectItem[] = GenresHelper.createGenreFilterList();
     public filters: MoviesFilter = {
-        search: '',
+        search: null,
         genre: null
     };
 
-    constructor(private store: Store<fromMoviesList.State>) {
+    constructor(private store: Store<fromMoviesList.State>, private router: Router) {
     }
 
     ngOnInit(): void {
         this.store.dispatch(new moviesListActions.Load());
-        this.getInitialFilters();
+        this.setInitialFilters();
         this.movies$ = this.store.pipe(select(fromMoviesList.getFilteredList));
-        this.createGenresList();
     }
 
     public searchQueryChanged(search: string): void {
@@ -36,7 +38,7 @@ export class MoviesListShellComponent implements OnInit {
             ...this.filters,
             search
         };
-        this.store.dispatch(new moviesListActions.SetFilters(this.filters));
+        this.dispatchFiltersChangeAction();
     }
 
     public genreFilterChanged(genre: GenreType): void {
@@ -44,31 +46,36 @@ export class MoviesListShellComponent implements OnInit {
             ...this.filters,
             genre
         };
+        this.dispatchFiltersChangeAction();
+    }
+
+    private dispatchFiltersChangeAction(): void {
+        this.router.navigate(['/'], {queryParams: this.buildQueryParams()});
         this.store.dispatch(new moviesListActions.SetFilters(this.filters));
     }
 
-    private getInitialFilters(): void {
-        this.store
-            .pipe(
-                select(fromMoviesList.getCurrentFilter),
-                take(1)
-            )
-            .subscribe(filter => {
-                this.filters = filter;
-            });
+    private buildQueryParams(): Params {
+        return Object.assign({},
+            {genre: this.filters.genre},
+            this.filters.search
+                ? {search: this.filters.search}
+                : null
+        );
     }
 
-    private createGenresList(): void {
-        this.genresList = [
-            {
-                name: 'All',
-                value: null
-            },
-            ...Object.keys(GenreType).map(key => ({
-                name: key,
-                value: GenreType[key]
-            })),
-        ];
+    private setInitialFilters(): void {
+        combineLatest(
+            this.store.select(fromMoviesList.getCurrentFilter),
+            this.store.select(fromRoot.selectRouteQueryParameters)
+        ).pipe(
+            take(1)
+        ).subscribe(([currentFilter, queryParams]: [MoviesFilter, Params]) => {
+            this.filters = Object.assign({},
+                currentFilter,
+                queryParams.genre ? {genre: queryParams.genre} : null,
+                queryParams.search ? {search: queryParams.search} : null
+            );
+            this.dispatchFiltersChangeAction();
+        });
     }
-
 }

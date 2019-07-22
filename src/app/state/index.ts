@@ -13,3 +13,8 @@ export const selectRouteParameters = createSelector(
     router => router.state.root.firstChild.params
 );
 
+export const selectRouteQueryParameters = createSelector(
+    selectRouterState,
+    router => router.state.root.firstChild.queryParams
+);
+
