@@ -21,8 +21,7 @@ export class MoviesFilterComponent implements OnInit, OnDestroy {
     @Output() genreFilterChanged: EventEmitter<GenreType> = new EventEmitter();
 
     ngOnInit(): void {
-        this.genreFilter = new FormControl();
-        this.genreFilter.setValue(this.findInitialValue());
+        this.genreFilter = new FormControl(this.findInitialValue());
         this.listenForChanges();
     }
 

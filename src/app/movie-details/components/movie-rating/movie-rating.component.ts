@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-movie-rating',
@@ -6,13 +6,6 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./movie-rating.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieRatingComponent implements OnInit {
+export class MovieRatingComponent {
     @Input() rate: string;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
 }

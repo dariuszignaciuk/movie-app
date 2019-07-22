@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {GenreType} from '../../../shared/models/genre-type';
 
 @Component({
@@ -7,13 +7,6 @@ import {GenreType} from '../../../shared/models/genre-type';
     styleUrls: ['./genres-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GenresListComponent implements OnInit {
+export class GenresListComponent {
     @Input() genres: GenreType[];
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
 }
