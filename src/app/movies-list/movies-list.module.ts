@@ -11,6 +11,7 @@ import {MoviesListComponent} from './components/movies-list/movies-list.componen
 import {MovieBoxComponent} from './components/movie-box/movie-box.component';
 import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {MoviesListHeaderComponent} from './components/movies-list-header/movies-list-header.component';
+import { MoviesFilterComponent } from './components/movies-filter/movies-filter.component';
 
 const moviesListRoutes: Routes = [
     {path: '', component: MoviesListShellComponent}
@@ -22,7 +23,8 @@ const moviesListRoutes: Routes = [
         MoviesListComponent,
         MovieBoxComponent,
         SearchBarComponent,
-        MoviesListHeaderComponent
+        MoviesListHeaderComponent,
+        MoviesFilterComponent
     ],
     imports: [
         SharedModule,

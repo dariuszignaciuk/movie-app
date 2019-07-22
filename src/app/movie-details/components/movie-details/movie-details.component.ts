@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Movie} from '../../../movie.model';
+import {Movie} from '../../../shared/models/movie';
 
 @Component({
     selector: 'app-movie-details',

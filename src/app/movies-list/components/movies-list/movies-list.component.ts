@@ -1,18 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Movie} from '../../../movie.model';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Movie} from '../../../shared/models/movie';
 
 @Component({
     selector: 'app-movies-list',
     templateUrl: './movies-list.component.html',
-    styleUrls: ['./movies-list.component.scss']
+    styleUrls: ['./movies-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviesListComponent implements OnInit {
+export class MoviesListComponent {
     @Input() movies: Movie[];
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
 }

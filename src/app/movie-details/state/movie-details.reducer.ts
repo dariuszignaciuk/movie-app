@@ -1,5 +1,5 @@
-import {Movie} from '../../movie.model';
 import {MovieDetailsActions, MovieDetailsActionTypes} from './movie-details.actions';
+import {Movie} from '../../shared/models/movie';
 
 export interface MovieDetailsState {
     movie: Movie;

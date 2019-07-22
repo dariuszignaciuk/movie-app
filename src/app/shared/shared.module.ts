@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LinkButtonComponent} from './components/link-button/link-button.component';
 import {RouterModule} from '@angular/router';
-import { IconComponent } from './components/icon/icon.component';
+import {IconComponent} from './components/icon/icon.component';
 
 const MATERIAL_MODULES = [
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatSelectModule,
 ];
 
 const SHARED_MODULES = [

@@ -1,0 +1,15 @@
+:host {
+  font-size: 16px;
+  display: block;
+}
+
+.filter-select {
+  width: 100px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 540px) {
+  :host {
+    margin: 20px auto;
+  }
+}

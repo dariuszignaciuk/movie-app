@@ -1,0 +1,6 @@
+<mat-label>Filter by genre:</mat-label>
+<mat-select [formControl]="genreFilter" class="filter-select">
+    <mat-option *ngFor="let genre of genresList" [value]="genre.value">
+        {{genre.name}}
+    </mat-option>
+</mat-select>

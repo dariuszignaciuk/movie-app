@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import * as fromMovieDetails from '../../state';
 import * as movieDetailsActions from '../../state/movie-details.actions';
-import {Movie} from '../../../movie.model';
 import {Observable} from 'rxjs';
+import {Movie} from '../../../shared/models/movie';
 
 @Component({
     templateUrl: './movie-details-shell.component.html',

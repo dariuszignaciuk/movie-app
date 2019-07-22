@@ -1,0 +1,15 @@
+.filters-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 10px 30px;
+  background: #dadada;
+}
+
+@media screen and (max-width: 540px) {
+  .filters-wrapper {
+    display: block;
+    text-align: center;
+  }
+}

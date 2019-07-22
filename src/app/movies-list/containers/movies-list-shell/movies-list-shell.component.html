@@ -1,5 +1,8 @@
 <app-movies-list-header
+        [genresList]="genresList"
+        [currentFilter]="filters"
         (searchQueryChanged)="searchQueryChanged($event)"
+        (genreFilterChanged)="genreFilterChanged($event)"
 ></app-movies-list-header>
 <app-movies-list
         [movies]="movies$ | async"

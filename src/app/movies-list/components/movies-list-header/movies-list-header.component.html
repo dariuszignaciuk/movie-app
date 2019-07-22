@@ -1,4 +1,12 @@
 <div class="container">
     <h1 class="page-title">Welcome to awesome movies library</h1>
-    <app-search-bar (searchQueryChanged)="searchQueryChanged.emit($event)"></app-search-bar>
+    <div class="filters-wrapper">
+        <app-search-bar [currentFilter]="currentFilter"
+                        (searchQueryChanged)="searchQueryChanged.emit($event)">
+        </app-search-bar>
+        <app-movies-filter [genresList]="genresList"
+                           [currentFilter]="currentFilter"
+                           (genreFilterChanged)="genreFilterChanged.emit($event)">
+        </app-movies-filter>
+    </div>
 </div>

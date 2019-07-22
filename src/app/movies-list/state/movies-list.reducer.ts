@@ -1,18 +1,18 @@
-import {Movie} from '../../movie.model';
 import {MoviesListActions, MoviesListActionTypes} from './movies-list.actions';
+import {Movie} from '../../shared/models/movie';
+import {MoviesFilter} from '../models/movies-filter';
 
 export interface MoviesListState {
     allMovies: Movie[];
-    currentlyDisplayedMovies: Movie[];
-    search: string;
-    error: string;
+    filter: MoviesFilter;
 }
 
 const initialState: MoviesListState = {
     allMovies: [],
-    currentlyDisplayedMovies: [],
-    search: '',
-    error: '',
+    filter: {
+        search: '',
+        genre: null
+    },
 };
 
 export function reducer(state = initialState, action: MoviesListActions): MoviesListState {
@@ -21,21 +21,16 @@ export function reducer(state = initialState, action: MoviesListActions): Movies
             return {
                 ...state,
                 allMovies: action.payload,
-                currentlyDisplayedMovies: action.payload,
-                error: ''
             };
         case MoviesListActionTypes.LoadFail:
             return {
                 ...state,
                 allMovies: [],
-                currentlyDisplayedMovies: [],
-                error: action.payload
             };
-        case MoviesListActionTypes.SearchMovies:
+        case MoviesListActionTypes.SetFilters:
             return {
                 ...state,
-                search: action.payload,
-                currentlyDisplayedMovies: state.allMovies.filter(movie => movie.name.toLowerCase().includes(action.payload.toLowerCase()))
+                filter: action.payload
             };
         default:
             return state;

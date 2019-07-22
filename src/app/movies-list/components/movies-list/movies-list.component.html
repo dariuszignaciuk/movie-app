@@ -3,4 +3,5 @@
             *ngFor="let movie of movies"
             [movie]="movie"
     ></app-movie-box>
+    <p class="no-results" *ngIf="movies.length === 0">No results found.</p>
 </section>

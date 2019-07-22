@@ -1,23 +1,16 @@
 import {Action} from '@ngrx/store';
-import {LoadFilters, Movie} from '../../movie.model';
+import {Movie} from '../../shared/models/movie';
+import {MoviesFilter} from '../models/movies-filter';
 
 export enum MoviesListActionTypes {
     Load = '[MoviesList] Load',
-    LoadWithFilters = '[MoviesList] Load with filters',
     LoadSuccess = '[MoviesList] Load Success',
     LoadFail = '[MoviesList] Load Fail',
-    SearchMovies = '[MoviesList] Filter movies\' titles with search query',
+    SetFilters = '[MoviesList] Set filters on movies list',
 }
 
 export class Load implements Action {
     readonly type = MoviesListActionTypes.Load;
-}
-
-export class LoadWithFilters implements Action {
-    readonly type = MoviesListActionTypes.LoadWithFilters;
-
-    constructor(public payload: LoadFilters) {
-    }
 }
 
 export class LoadSuccess implements Action {
@@ -34,15 +27,14 @@ export class LoadFail implements Action {
     }
 }
 
-export class SearchMovies implements Action {
-    readonly type = MoviesListActionTypes.SearchMovies;
+export class SetFilters implements Action {
+    readonly type = MoviesListActionTypes.SetFilters;
 
-    constructor(public payload: string) {
+    constructor(public payload: MoviesFilter) {
     }
 }
 
 export type MoviesListActions = Load
-    | LoadWithFilters
     | LoadSuccess
     | LoadFail
-    | SearchMovies;
+    | SetFilters;

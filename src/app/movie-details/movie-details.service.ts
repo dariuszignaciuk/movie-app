@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Movie} from '../movie.model';
 import {map} from 'rxjs/operators';
 import {ImageHelper} from '../shared/utils/image-helper';
+import {Movie} from '../shared/models/movie';
 
 @Injectable()
 export class MovieDetailsService {

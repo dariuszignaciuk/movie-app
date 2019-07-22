@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {GenreType} from '../../../movie.model';
+import {GenreType} from '../../../shared/models/genre-type';
 
 @Component({
     selector: 'app-genres-list',
