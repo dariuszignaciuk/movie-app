@@ -26,7 +26,7 @@ export class MoviesListShellComponent implements OnInit {
 
     ngOnInit(): void {
         this.store.dispatch(new moviesListActions.Load());
-        this.getCurrentFilter();
+        this.getInitialFilters();
         this.movies$ = this.store.pipe(select(fromMoviesList.getFilteredList));
         this.createGenresList();
     }
@@ -47,7 +47,7 @@ export class MoviesListShellComponent implements OnInit {
         this.store.dispatch(new moviesListActions.SetFilters(this.filters));
     }
 
-    private getCurrentFilter(): void {
+    private getInitialFilters(): void {
         this.store
             .pipe(
                 select(fromMoviesList.getCurrentFilter),
