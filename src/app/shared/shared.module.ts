@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import {LinkButtonComponent} from './components/link-button/link-button.component';
@@ -17,7 +16,6 @@ const MATERIAL_MODULES = [
 const SHARED_MODULES = [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     ReactiveFormsModule,
     MATERIAL_MODULES,
 ];

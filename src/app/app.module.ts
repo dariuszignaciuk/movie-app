@@ -8,6 +8,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         StoreModule.forRoot({
             router: routerReducer,

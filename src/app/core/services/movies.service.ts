@@ -1,32 +1,49 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {ImageHelper} from '../../shared/utils/image-helper';
 import {Movie} from '../../shared/models/movie';
+import {MoviesApiService} from './movies-api.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MoviesService {
+    private allMovies$: BehaviorSubject<Movie[]> = new BehaviorSubject([]);
 
-    constructor(private http: HttpClient) {
+    constructor(private moviesApiService: MoviesApiService) {
     }
 
-    getMoviesList(): Observable<Movie[]> {
-        return this.http.get<Movie[]>('/assets/json/movie.mock-data.json')
-            .pipe(
-                map(movies => movies.map(movie => {
-                    movie.img = ImageHelper.constructImgUrl(movie.img);
-                    return movie;
-                }))
-            );
+    public getMoviesList(): Observable<Movie[]> {
+        if (this.isMoviesListStored()) {
+            return this.allMovies$.asObservable();
+        } else {
+            return this.moviesApiService.getMoviesList()
+                .pipe(
+                    map(movies => {
+                        const mapped: Movie[] = this.mapMovies(movies);
+                        this.allMovies$.next(mapped);
+                        return mapped;
+                    })
+                );
+        }
     }
 
-    getMovie(key: string): Observable<Movie> {
+    public getMovie(key: string): Observable<Movie> {
         return this.getMoviesList()
             .pipe(
                 map(allMovies => allMovies.find(movie => movie.key === key))
             );
+    }
+
+    private isMoviesListStored(): boolean {
+        return this.allMovies$.getValue().length > 0;
+    }
+
+    private mapMovies(movies: Movie[]): Movie[] {
+        return movies.map(movie => {
+            movie.img = ImageHelper.constructImgUrl(movie.img);
+            return movie;
+        });
     }
 }
