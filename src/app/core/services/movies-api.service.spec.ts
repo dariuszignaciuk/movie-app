@@ -2,7 +2,6 @@ import {TestBed} from '@angular/core/testing';
 import {MoviesApiService} from './movies-api.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {MoviesService} from './movies.service';
-import {GenreType} from "../../shared/models/genre-type";
 
 describe('MoviesApiService', () => {
     let httpTestingController: HttpTestingController;
