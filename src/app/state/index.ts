@@ -10,7 +10,12 @@ export const selectRouterState =
 
 export const selectRouteParameters = createSelector(
     selectRouterState,
-    router => router.state.root.firstChild.params
+    router => {
+        if (router.state.root.firstChild) {
+            return router.state.root.firstChild.params;
+        }
+        return {};
+    }
 );
 
 export const selectRouteQueryParameters = createSelector(

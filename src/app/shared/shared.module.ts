@@ -5,6 +5,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LinkButtonComponent} from './components/link-button/link-button.component';
 import {RouterModule} from '@angular/router';
 import {IconComponent} from './components/icon/icon.component';
+import {LoaderComponent} from './components/loader/loader.component';
 
 const MATERIAL_MODULES = [
     MatInputModule,
@@ -23,6 +24,7 @@ const SHARED_MODULES = [
 const SHARED_COMPONENTS = [
     LinkButtonComponent,
     IconComponent,
+    LoaderComponent,
 ];
 
 @NgModule({

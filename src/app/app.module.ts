@@ -9,6 +9,7 @@ import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {HttpClientModule} from '@angular/common/http';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
+        SharedModule,
         StoreModule.forRoot({
             router: routerReducer,
         }, {

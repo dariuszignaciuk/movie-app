@@ -22,7 +22,13 @@ export class MovieDetailsEffects {
         switchMap(() => this.store.pipe(select(fromRoot.selectRouteParameters))),
         switchMap((routeParams: Params) => {
             return this.moviesService.getMovie(routeParams.key).pipe(
-                map(movie => (new movieDetailsActions.LoadSuccess(movie))),
+                map(movie => {
+                    if (movie) {
+                        return new movieDetailsActions.LoadSuccess(movie);
+                    } else {
+                        return new movieDetailsActions.LoadFail('No results found');
+                    }
+                }),
                 catchError(err => of(new movieDetailsActions.LoadFail(err)))
             );
         })

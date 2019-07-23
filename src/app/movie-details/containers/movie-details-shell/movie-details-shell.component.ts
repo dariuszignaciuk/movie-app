@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import * as fromMovieDetails from '../../state';
-import * as movieDetailsActions from '../../state/movie-details.actions';
 import {Observable} from 'rxjs';
 import {Movie} from '../../../shared/models/movie';
 
@@ -16,7 +15,6 @@ export class MovieDetailsShellComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.store.dispatch(new movieDetailsActions.Load());
         this.movie$ = this.store.pipe(select(fromMovieDetails.getMovieDetails));
     }
 

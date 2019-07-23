@@ -9,9 +9,10 @@ import {MovieDetailsEffects} from './state/movie-details.effects';
 import {MovieDetailsComponent} from './components/movie-details/movie-details.component';
 import {GenresListComponent} from './components/genres-list/genres-list.component';
 import {MovieRatingComponent} from './components/movie-rating/movie-rating.component';
+import {MovieDetailsGuard} from './services/movie-details.guard';
 
 const movieDetailsRoutes: Routes = [
-    {path: '', component: MovieDetailsShellComponent}
+    {path: '', component: MovieDetailsShellComponent, canActivate: [MovieDetailsGuard]}
 ];
 
 @NgModule({
@@ -23,7 +24,8 @@ const movieDetailsRoutes: Routes = [
         EffectsModule.forFeature(
             [MovieDetailsEffects]
         ),
-    ]
+    ],
+    providers: [MovieDetailsGuard]
 })
 export class MovieDetailsModule {
 }

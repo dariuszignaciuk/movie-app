@@ -6,7 +6,6 @@ import * as fromMovieDetails from '../../state';
 import {GenreType} from '../../../shared/models/genre-type';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {Movie} from '../../../shared/models/movie';
-import * as movieDetailsActions from '../../state/movie-details.actions';
 
 describe('MovieDetailsShellComponent', () => {
     let component: MovieDetailsShellComponent;
@@ -58,15 +57,6 @@ describe('MovieDetailsShellComponent', () => {
         component.movie$.subscribe(m => {
             expect(m.name).toEqual(movie.name);
             expect(m.genres).toEqual(movie.genres);
-            done();
-        });
-    });
-
-    it('should dispatch Load action on component init', (done) => {
-        fixture.detectChanges();
-
-        store.scannedActions$.subscribe(action => {
-            expect(action.type).toEqual(movieDetailsActions.MovieDetailsActionTypes.Load);
             done();
         });
     });

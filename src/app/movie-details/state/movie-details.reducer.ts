@@ -6,7 +6,7 @@ export interface MovieDetailsState {
 }
 
 const initialState: MovieDetailsState = {
-    movie: null,
+    movie: undefined,
 };
 
 export function reducer(state = initialState, action: MovieDetailsActions): MovieDetailsState {
