@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ImageHelper} from '../shared/utils/image-helper';
-import {Movie} from '../shared/models/movie';
+import {ImageHelper} from '../../shared/utils/image-helper';
+import {Movie} from '../../shared/models/movie';
 
-@Injectable()
-export class MoviesListService {
+@Injectable({
+    providedIn: 'root'
+})
+export class MoviesService {
 
     constructor(private http: HttpClient) {
     }
@@ -18,6 +20,13 @@ export class MoviesListService {
                     movie.img = ImageHelper.constructImgUrl(movie.img);
                     return movie;
                 }))
+            );
+    }
+
+    getMovie(key: string): Observable<Movie> {
+        return this.getMoviesList()
+            .pipe(
+                map(allMovies => allMovies.find(movie => movie.key === key))
             );
     }
 }

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-link-button',
@@ -6,16 +6,9 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./link-button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LinkButtonComponent implements OnInit {
+export class LinkButtonComponent {
     @Input() text: string;
     @Input() url: string;
     @Input() iconName: string;
     @Input() usePngIcon: boolean;
-
-    constructor() {
-    }
-
-    ngOnInit() {
-    }
-
 }

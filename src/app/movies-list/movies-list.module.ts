@@ -6,12 +6,11 @@ import {reducer} from './state/movies-list.reducer';
 import {EffectsModule} from '@ngrx/effects';
 import {MoviesListEffects} from './state/movies-list.effects';
 import {SharedModule} from '../shared/shared.module';
-import {MoviesListService} from './movies-list.service';
 import {MoviesListComponent} from './components/movies-list/movies-list.component';
 import {MovieBoxComponent} from './components/movie-box/movie-box.component';
 import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {MoviesListHeaderComponent} from './components/movies-list-header/movies-list-header.component';
-import { MoviesFilterComponent } from './components/movies-filter/movies-filter.component';
+import {MoviesFilterComponent} from './components/movies-filter/movies-filter.component';
 
 const moviesListRoutes: Routes = [
     {path: '', component: MoviesListShellComponent}
@@ -33,8 +32,7 @@ const moviesListRoutes: Routes = [
         EffectsModule.forFeature(
             [MoviesListEffects]
         ),
-    ],
-    providers: [MoviesListService]
+    ]
 })
 export class MoviesListModule {
 }

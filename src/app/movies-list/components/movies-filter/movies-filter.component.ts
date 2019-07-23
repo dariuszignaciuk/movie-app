@@ -30,7 +30,8 @@ export class MoviesFilterComponent implements OnInit, OnDestroy {
     }
 
     private findInitialValue(): GenreType {
-        return this.genresList.find(genre => genre.value === this.currentFilter.genre).value;
+        const match: GenreSelectItem = this.genresList.find(genre => genre.value === this.currentFilter.genre);
+        return match ? match.value : null;
     }
 
     private listenForChanges(): void {

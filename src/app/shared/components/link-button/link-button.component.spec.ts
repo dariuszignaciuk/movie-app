@@ -1,25 +1,57 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {LinkButtonComponent} from './link-button.component';
+import {MockComponent} from '../../../testing/mock-component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {By} from '@angular/platform-browser';
+import {MatButtonModule} from '@angular/material';
 
-import { LinkButtonComponent } from './link-button.component';
+describe('LinkButtonComponent', () => {
+    let component: LinkButtonComponent;
+    let fixture: ComponentFixture<LinkButtonComponent>;
 
-describe('ButtonComponent', () => {
-  let component: LinkButtonComponent;
-  let fixture: ComponentFixture<LinkButtonComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule, MatButtonModule],
+            declarations: [
+                LinkButtonComponent,
+                MockComponent({selector: 'app-icon', inputs: ['iconName', 'usePng']}),
+            ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LinkButtonComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(LinkButtonComponent);
+        component = fixture.componentInstance;
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LinkButtonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    it('should create', () => {
+        fixture.detectChanges();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        expect(component).toBeTruthy();
+    });
+
+    it('should render correct text', () => {
+        component.text = 'Hello World!';
+
+        fixture.detectChanges();
+
+        expect(fixture.nativeElement.textContent).toBe(component.text);
+    });
+
+    it('should render IconComponent if iconName is passed', () => {
+        component.iconName = 'test';
+
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.queryAll(By.css('app-icon')).length).toEqual(1);
+    });
+
+    it('should NOT render IconComponent if iconName is empty', () => {
+        component.iconName = '';
+
+        fixture.detectChanges();
+
+        expect(fixture.debugElement.queryAll(By.css('app-icon')).length).toEqual(0);
+    });
 });

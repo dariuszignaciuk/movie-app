@@ -4,19 +4,19 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as moviesListActions from './movies-list.actions';
-import {MoviesListService} from '../movies-list.service';
+import {MoviesService} from '../../core/services/movies.service';
 
 @Injectable()
 export class MoviesListEffects {
 
-    constructor(private moviesListService: MoviesListService, private actions$: Actions) {
+    constructor(private moviesService: MoviesService, private actions$: Actions) {
     }
 
     @Effect()
     loadMoviesList$: Observable<Action> = this.actions$.pipe(
         ofType(moviesListActions.MoviesListActionTypes.Load),
         mergeMap(action =>
-            this.moviesListService.getMoviesList().pipe(
+            this.moviesService.getMoviesList().pipe(
                 map(movies => (new moviesListActions.LoadSuccess(movies))),
                 catchError(err => of(new moviesListActions.LoadFail(err)))
             )
