@@ -23,7 +23,7 @@ describe('MoviesApiService', () => {
 
             service.getMoviesList().subscribe();
 
-            const req = httpTestingController.expectOne('/assets/json/movie.mock-data.json');
+            const req = httpTestingController.expectOne('movie.mock-data.json');
             expect(req.request.method).toBe('GET');
             req.flush([]);
             httpTestingController.verify();

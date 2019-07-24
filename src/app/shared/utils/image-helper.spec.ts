@@ -1,13 +1,28 @@
-import {GenresHelper} from './genres-helper';
+import {ImageHelper} from './image-helper';
 
-describe('GenresHelper', () => {
+describe('ImageHelper', () => {
 
-    describe('createGenreFilterList', () => {
-        it('should create genres list with "All" option as first', () => {
-            const genresList = GenresHelper.createGenreFilterList();
+    describe('constructImgUrl', () => {
+        it('should prepend assets path to img url', () => {
+            const newUrl: string = ImageHelper.constructImgUrl('test-url');
 
-            expect(genresList.length).toBeGreaterThan(1);
-            expect(genresList[0].name).toBe('All');
+            expect(newUrl).toEqual('/assets/images/movie-covers/test-url');
+        });
+    });
+
+    describe('imageNotFound', () => {
+        it('should set plug as img src', () => {
+            const event = {
+                target: {
+                    src: 'test-src'
+                },
+                preventDefault: () => null,
+                stopPropagation: () => null,
+            };
+
+            ImageHelper.imageNotFound(event);
+
+            expect(event.target.src).toEqual('/assets/images/plug.jpg');
         });
     });
 });

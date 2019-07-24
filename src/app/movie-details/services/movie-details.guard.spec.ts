@@ -1,13 +1,11 @@
 import {TestBed} from '@angular/core/testing';
 import {MovieDetailsGuard} from './movie-details.guard';
-import * as movieDetailsActions from '../state/movie-details.actions';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import * as fromMovieDetails from '../state';
 import {MemoizedSelector, Store} from '@ngrx/store';
 import {Movie} from '../../shared/models/movie';
 import {GenreType} from '../../shared/models/genre-type';
-import {filter} from "rxjs/operators";
 
 describe('MovieDetailsGuard', () => {
     let store: MockStore<fromMovieDetails.State>;

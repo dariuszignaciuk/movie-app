@@ -8,8 +8,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
+import {UrlInterceptor} from './core/services/url.interceptor';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,13 @@ import {SharedModule} from './shared/shared.module';
         BrowserAnimationsModule,
         StoreRouterConnectingModule.forRoot(),
     ],
-    providers: [],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: UrlInterceptor,
+            multi: true
+        },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

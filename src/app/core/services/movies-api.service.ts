@@ -12,6 +12,6 @@ export class MoviesApiService {
     }
 
     public getMoviesList(): Observable<Movie[]> {
-        return this.http.get<Movie[]>('/assets/json/movie.mock-data.json');
+        return this.http.get<Movie[]>('movie.mock-data.json');
     }
 }

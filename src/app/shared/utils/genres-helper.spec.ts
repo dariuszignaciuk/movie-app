@@ -1,12 +1,13 @@
-import {ImageHelper} from './image-helper';
+import {GenresHelper} from './genres-helper';
 
-describe('ImageHelper', () => {
+describe('GenresHelper', () => {
 
-    describe('constructImgUrl', () => {
-        it('should prepend assets path to img url', () => {
-            const newUrl: string = ImageHelper.constructImgUrl('test-url');
+    describe('createGenreFilterList', () => {
+        it('should create genres list with "All" option as first', () => {
+            const genresList = GenresHelper.createGenreFilterList();
 
-            expect(newUrl).toEqual('/assets/images/movie-covers/test-url');
+            expect(genresList.length).toBeGreaterThan(1);
+            expect(genresList[0].name).toBe('All');
         });
     });
 });
