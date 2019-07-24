@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output, SimpleChanges
+} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
@@ -10,16 +19,21 @@ import {MoviesFilter} from '../../models/movies-filter';
     styleUrls: ['./search-bar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchBarComponent implements OnInit, OnDestroy {
-    public search: FormControl;
+export class SearchBarComponent implements OnInit, OnChanges, OnDestroy {
+    public search: FormControl = new FormControl();
     private sub: Subscription = new Subscription();
 
     @Input() currentFilter: MoviesFilter;
     @Output() searchQueryChanged: EventEmitter<string> = new EventEmitter();
 
     ngOnInit(): void {
-        this.search = new FormControl(this.currentFilter.search);
         this.listenForChanges();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.currentFilter) {
+            this.search.setValue(changes.currentFilter.currentValue.search);
+        }
     }
 
     ngOnDestroy(): void {

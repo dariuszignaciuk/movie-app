@@ -3,6 +3,7 @@ import {SearchBarComponent} from './search-bar.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MockComponent} from '../../../testing/mock-component';
 import {GenreType} from '../../../shared/models/genre-type';
+import {SimpleChange, SimpleChanges} from '@angular/core';
 
 describe('SearchBarComponent', () => {
     let component: SearchBarComponent;
@@ -26,22 +27,28 @@ describe('SearchBarComponent', () => {
     });
 
     it('should create', () => {
-        component.currentFilter = {
-            genre: null,
-            search: ''
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: null,
+                search: ''
+            }, true)
         };
 
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
     });
 
     it('should fill formControl with passed filter', () => {
-        component.currentFilter = {
-            genre: GenreType.Scifi,
-            search: 'test'
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: GenreType.Scifi,
+                search: 'test'
+            }, true)
         };
 
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
 
         expect(component.search.value).toBe('test');
@@ -49,12 +56,16 @@ describe('SearchBarComponent', () => {
 
     it('should emit searchQueryChanged on input change once every 300ms and not repeat itself', fakeAsync(() => {
         spyOn(component.searchQueryChanged, 'emit');
-        component.currentFilter = {
-            genre: null,
-            search: ''
-        };
 
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: null,
+                search: ''
+            }, true)
+        };
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
+
         component.search.setValue('test 1');
         component.search.setValue('test 1');
         component.search.setValue('test 2');

@@ -33,6 +33,7 @@ describe('MovieBoxComponent', () => {
         };
         fixture = TestBed.createComponent(MovieBoxComponent);
         component = fixture.componentInstance;
+        component.imgNotFound = null;
     });
 
     it('should create', () => {

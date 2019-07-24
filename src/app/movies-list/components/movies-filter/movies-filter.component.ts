@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output, SimpleChanges
+} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {distinctUntilChanged} from 'rxjs/operators';
 import {GenreSelectItem} from '../../models/genre-select-item';
@@ -12,8 +21,8 @@ import {MoviesFilter} from '../../models/movies-filter';
     styleUrls: ['./movies-filter.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviesFilterComponent implements OnInit, OnDestroy {
-    public genreFilter: FormControl;
+export class MoviesFilterComponent implements OnInit, OnChanges, OnDestroy {
+    public genreFilter: FormControl = new FormControl();
     private sub: Subscription = new Subscription();
 
     @Input() genresList: GenreSelectItem[];
@@ -21,16 +30,21 @@ export class MoviesFilterComponent implements OnInit, OnDestroy {
     @Output() genreFilterChanged: EventEmitter<GenreType> = new EventEmitter();
 
     ngOnInit(): void {
-        this.genreFilter = new FormControl(this.findInitialValue());
         this.listenForChanges();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.currentFilter) {
+            this.genreFilter.setValue(this.findInitialValue(changes.currentFilter.currentValue));
+        }
     }
 
     ngOnDestroy(): void {
         this.sub.unsubscribe();
     }
 
-    private findInitialValue(): GenreType {
-        const match: GenreSelectItem = this.genresList.find(genre => genre.value === this.currentFilter.genre);
+    private findInitialValue(newFilter: MoviesFilter): GenreType {
+        const match: GenreSelectItem = this.genresList.find(genre => genre.value === newFilter.genre);
         return match ? match.value : null;
     }
 

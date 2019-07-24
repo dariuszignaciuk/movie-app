@@ -9,9 +9,8 @@ import * as fromMovieDetails from '../../../movie-details/state';
 import {GenreType} from '../../../shared/models/genre-type';
 import {RouterTestingModule} from '@angular/router/testing';
 import {MoviesFilter} from '../../models/movies-filter';
-import * as fromRoot from '../../../state';
-import {Params} from '@angular/router';
-import * as moviesListActions from '../../state/movies-list.actions';
+import {FiltersService} from '../../services/filters.service';
+import {of} from 'rxjs';
 
 describe('MoviesListShellComponent', () => {
     let component: MoviesListShellComponent;
@@ -19,11 +18,14 @@ describe('MoviesListShellComponent', () => {
     let store: MockStore<fromMoviesList.State>;
     let getMoviesList: MemoizedSelector<fromMoviesList.State, Movie[]>;
     let getCurrentFilter: MemoizedSelector<fromMoviesList.State, MoviesFilter>;
-    let selectRouteQueryParameters: MemoizedSelector<fromRoot.State, Params>;
     let list: Movie[];
     let filter: MoviesFilter;
+    let mockFilterService;
 
     beforeEach(async(() => {
+        mockFilterService = jasmine.createSpyObj(['setInitialFilters', 'dispatchFiltersChangeAction']);
+        mockFilterService.filters$ = of({search: '', genre: null});
+
         TestBed.configureTestingModule({
             imports: [
                 RouterTestingModule,
@@ -35,6 +37,7 @@ describe('MoviesListShellComponent', () => {
             ],
             providers: [
                 provideMockStore(),
+                {provide: FiltersService, useValue: mockFilterService}
             ],
         })
             .compileComponents();
@@ -70,7 +73,6 @@ describe('MoviesListShellComponent', () => {
         store = TestBed.get<Store<fromMovieDetails.State>>(Store);
         getMoviesList = store.overrideSelector(fromMoviesList.getMoviesList, list);
         getCurrentFilter = store.overrideSelector(fromMoviesList.getCurrentFilter, filter);
-        selectRouteQueryParameters = store.overrideSelector(fromRoot.selectRouteQueryParameters, {});
 
         fixture = TestBed.createComponent(MoviesListShellComponent);
         component = fixture.componentInstance;
@@ -82,7 +84,7 @@ describe('MoviesListShellComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should get and correctly filter movie list from store', (done) => {
+    it('should correctly filter movie list from store', (done) => {
         fixture.detectChanges();
 
         component.movies$.subscribe(movies => {
@@ -117,7 +119,7 @@ describe('MoviesListShellComponent', () => {
             expect(component.filters.genre).toEqual(GenreType.Crime);
         });
 
-        it('should dispatch SetFilters action', (done) => {
+        it('should call dispatchFiltersChangeAction action on service', () => {
             fixture.detectChanges();
             component.filters = {
                 search: 'test',
@@ -125,11 +127,7 @@ describe('MoviesListShellComponent', () => {
             };
 
             component.searchQueryChanged('hello world');
-
-            store.scannedActions$.subscribe(action => {
-                expect(action.type).toEqual(moviesListActions.MoviesListActionTypes.SetFilters);
-                done();
-            });
+            expect(mockFilterService.dispatchFiltersChangeAction).toHaveBeenCalled();
         });
     });
 
@@ -158,7 +156,7 @@ describe('MoviesListShellComponent', () => {
             expect(component.filters.search).toEqual('test');
         });
 
-        it('should dispatch SetFilters action', (done) => {
+        it('should call dispatchFiltersChangeAction action on service', () => {
             fixture.detectChanges();
             component.filters = {
                 search: 'test',
@@ -167,10 +165,7 @@ describe('MoviesListShellComponent', () => {
 
             component.genreFilterChanged(GenreType.Drama);
 
-            store.scannedActions$.subscribe(action => {
-                expect(action.type).toEqual(moviesListActions.MoviesListActionTypes.SetFilters);
-                done();
-            });
+            expect(mockFilterService.dispatchFiltersChangeAction).toHaveBeenCalled();
         });
     });
 });

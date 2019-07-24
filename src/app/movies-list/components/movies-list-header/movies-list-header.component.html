@@ -1,5 +1,7 @@
 <div class="container">
-    <h1 class="page-title center">Welcome to awesome movies library</h1>
+    <h1 class="page-title center">
+        <a routerLink="/">Welcome to <span class="fancy-text">awesome</span> movies library</a>
+    </h1>
     <div class="filters-wrapper">
         <app-search-bar [currentFilter]="currentFilter"
                         (searchQueryChanged)="searchQueryChanged.emit($event)">

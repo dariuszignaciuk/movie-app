@@ -12,6 +12,7 @@ import {SearchBarComponent} from './components/search-bar/search-bar.component';
 import {MoviesListHeaderComponent} from './components/movies-list-header/movies-list-header.component';
 import {MoviesFilterComponent} from './components/movies-filter/movies-filter.component';
 import {MoviesListGuard} from './services/movies-list.guard';
+import {FiltersService} from './services/filters.service';
 
 const moviesListRoutes: Routes = [
     {path: '', component: MoviesListShellComponent, canActivate: [MoviesListGuard]}
@@ -34,7 +35,10 @@ const moviesListRoutes: Routes = [
             [MoviesListEffects]
         ),
     ],
-    providers: [MoviesListGuard]
+    providers: [
+        MoviesListGuard,
+        FiltersService
+    ]
 })
 export class MoviesListModule {
 }

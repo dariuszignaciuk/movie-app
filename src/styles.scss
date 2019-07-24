@@ -42,3 +42,9 @@ body, html {
   padding: 20px 0;
   font-weight: 700;
 }
+
+.fancy-text {
+  background-image: linear-gradient(135deg, #f6d365, $main-color 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

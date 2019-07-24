@@ -30,11 +30,10 @@ describe('UrlInterceptor', () => {
     });
 
     it('should prepend base api url', () => {
-        service.getMoviesList().subscribe(response => {
-            expect(response).toBeTruthy();
-        });
+        service.getMoviesList().subscribe();
 
         const httpRequest = httpMock.expectOne(`${environment.apiConfig.url}movie.mock-data.json`);
+        expect(httpRequest.request.url).toContain(environment.apiConfig.url);
         httpMock.verify();
     });
 });

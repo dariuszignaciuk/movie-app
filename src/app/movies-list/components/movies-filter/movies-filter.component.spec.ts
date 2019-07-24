@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material';
 import {GenreSelectItem} from '../../models/genre-select-item';
 import {GenreType} from '../../../shared/models/genre-type';
+import {SimpleChange, SimpleChanges} from '@angular/core';
 
 describe('MoviesFilterComponent', () => {
     let component: MoviesFilterComponent;
@@ -36,33 +37,42 @@ describe('MoviesFilterComponent', () => {
     });
 
     it('should create', () => {
-        component.currentFilter = {
-            genre: null,
-            search: ''
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: null,
+                search: ''
+            }, true)
         };
 
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
 
         expect(component).toBeTruthy();
     });
 
     it('should fill formControl with passed filter', () => {
-        component.currentFilter = {
-            genre: GenreType.Scifi,
-            search: 'Scifi'
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: GenreType.Scifi,
+                search: 'Scifi'
+            }, true)
         };
 
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
 
         expect(component.genreFilter.value).toBe(GenreType.Scifi);
     });
 
     it('should initialize formControl with null value if empty filter was passed', () => {
-        component.currentFilter = {
-            genre: null,
-            search: ''
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: null,
+                search: ''
+            }, true)
         };
 
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
 
         expect(component.genreFilter.value).toBe(null);
@@ -70,12 +80,15 @@ describe('MoviesFilterComponent', () => {
 
     it('should emit genreFilterChanged on selection change', () => {
         spyOn(component.genreFilterChanged, 'emit');
-        component.currentFilter = {
-            genre: null,
-            search: ''
+        const changesObj: SimpleChanges = {
+            currentFilter: new SimpleChange(null, {
+                genre: null,
+                search: ''
+            }, true)
         };
-
+        component.ngOnChanges(changesObj);
         fixture.detectChanges();
+
         component.genreFilter.setValue(GenreType.Sport);
         component.genreFilter.setValue(GenreType.Sport);
         component.genreFilter.setValue(GenreType.Sport);
