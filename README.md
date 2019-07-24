@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
-##To launch app in developmen server
+## To launch app in developmen server
 1. make sure you’re using Node.js version 10 or later
 2. run ``npm i``
 3. run ``ng s -o``
