@@ -22,7 +22,7 @@ describe('MovieBoxComponent', () => {
 
     beforeEach(() => {
         movie = {
-            rate: '5.1',
+            rate: '5.2',
             genres: [GenreType.Mystery],
             length: '1h 20min',
             description: 'dummy desc',
