@@ -7,7 +7,7 @@ export interface State extends fromRoot.State {
     movieDetails: MovieDetailsState;
 }
 
-const getMoviesListFeatureState = createFeatureSelector<MovieDetailsState>('movieDetails');
+export const getMoviesListFeatureState = createFeatureSelector<MovieDetailsState>('movieDetails');
 
 export const getMovieDetails = createSelector(
     getMoviesListFeatureState,

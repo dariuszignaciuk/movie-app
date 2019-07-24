@@ -62,7 +62,6 @@ export class MoviesListShellComponent implements OnInit, OnDestroy {
     }
 
     private initFiltersCheck(): void {
-
         this.route.queryParams.subscribe(() => {
             this.filtersService.setInitialFilters();
         });

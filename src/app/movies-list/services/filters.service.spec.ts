@@ -31,7 +31,6 @@ describe('FiltersService', () => {
         store = TestBed.get<Store<fromMoviesList.State>>(Store);
         getCurrentFilter = store.overrideSelector(fromMoviesList.getCurrentFilter, filter);
         selectRouteQueryParameters = store.overrideSelector(fromRoot.selectRouteQueryParameters, {});
-
     });
 
     it('should be created', () => {

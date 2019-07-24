@@ -36,7 +36,7 @@ describe('MovieDetailsComponent', () => {
 
         fixture = TestBed.createComponent(MovieDetailsComponent);
         component = fixture.componentInstance;
-        component.imgNotFound = null;
+        component.imgNotFound = () => null;
     });
 
     it('should create', () => {
