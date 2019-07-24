@@ -68,8 +68,8 @@ export class FiltersService {
     private setFiltersWithParams(currentFilter: MoviesFilter, queryParams: Params): MoviesFilter {
         return Object.assign({},
             currentFilter,
+            {search: queryParams.search},
             queryParams.genre ? {genre: queryParams.genre} : null,
-            queryParams.search ? {search: queryParams.search} : null
         );
     }
 }

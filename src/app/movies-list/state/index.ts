@@ -27,7 +27,7 @@ export const filterMovies = (allMovies: Movie[], filter: MoviesFilter) => {
     } else {
         filtered = allMovies;
     }
-    filtered = filtered.filter(movie => movie.name.toLowerCase().includes(filter.search.toLowerCase()));
+    filtered = filtered.filter(movie => movie.name.toLowerCase().includes(filter.search ? filter.search.toLowerCase() : ''));
     return filtered;
 };
 

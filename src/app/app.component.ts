@@ -23,7 +23,9 @@ export class AppComponent implements OnInit {
             this.isLoading = true;
         } else if (routerEvent instanceof NavigationError || routerEvent instanceof NavigationCancel
             || routerEvent instanceof NavigationEnd) {
-            this.isLoading = false;
+            setTimeout(() => {
+                this.isLoading = false;
+            });
         }
     }
 }
